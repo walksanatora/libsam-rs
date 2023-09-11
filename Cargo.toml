@@ -3,6 +3,7 @@ name = "libsam-rs"
 version = "0.1.0"
 edition = "2021"
 description = "safe/sys bindings for SAM text to speech"
+license = "Abandonware"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
