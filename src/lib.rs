@@ -1,9 +1,21 @@
+//! libSAM-rs
+//! sys/safe bindings for Software Automatic Mouth
+//! this runs using my fork of SAM
+//! which provides utility functions for setting Tts values
+//! and a utility function for rendering messages (they have to be formatted)
+//! this does build SAM for your target arch also and gets statically linked
+//! 
+//! If you have not heard of SAM it was used by the game FAITH: The Unholy Trinity
+//! due to having 4 values it can be really easy to use if you just randomize the values by 32-64
+
 use std::ffi::NulError;
 
 use libc::c_void;
 
 pub mod sys;
 
+/// unsigned 8-bit mono pcm @ 22050 hz audio returned by SAM
+pub type SAMAudio = Vec<u8>;
 
 /// A enum containg all errors that TTS can return
 pub enum TTSError {
@@ -53,7 +65,7 @@ unsafe fn render_chunk(chunk: &str) -> Result<Vec<u8>,TTSError> {
 }
 
 /// Speaks the chosen text as a message
-pub fn speak_words(tospeak: &str) -> Result<Vec<u8>,TTSError> {
+pub fn speak_words(tospeak: &str) -> Result<SAMAudio, TTSError> {
     let bytes: Vec<u8> = if tospeak.len()<=255 {
         unsafe {render_chunk(tospeak)?}
     } else {
