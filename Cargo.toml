@@ -4,6 +4,7 @@ version = "0.2.0"
 edition = "2021"
 description = "safe/sys bindings for SAM text to speech"
 license = "Unlicense"
+repository = "https://github.com/walksanatora/libsam-rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
